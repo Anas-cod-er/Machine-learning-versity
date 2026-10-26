@@ -18,5 +18,29 @@ arr3 = nm.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
 
 newarr = arr3.reshape(4, 3)
 
-print(newarr)
+
+
+
+# print(newarr)
+
+
+#join
+
+arr4 = nm.array([[0,9],[8,7]])
+arr5 = nm.array([[4,5],[4,7]])
+
+arr6 = nm.concatenate((arr4,arr5),axis=1)
+# print(arr6)
+
+
+arr7 =nm.array([6,7,9])
+arr8 = nm.array([0,5,2])
+
+arr9 = nm.hstack((arr7,arr8))
+
+print(arr9)
+
+
+
+
 
