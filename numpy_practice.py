@@ -38,7 +38,19 @@ arr8 = nm.array([0,5,2])
 
 arr9 = nm.hstack((arr7,arr8))
 
-print(arr9)
+# print(arr9)
+
+arr10 = nm.array([1, 2, 3, 4, 5, 4, 4])
+
+x = nm.where(arr10 == 4)
+y = nm.where(arr10 %2 ==1)
+
+# print(y)
+
+
+arr11 = nm.array([3, 2, 0, 1])
+
+print(nm.sort(arr11))
 
 
 
