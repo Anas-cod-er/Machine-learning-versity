@@ -1,4 +1,5 @@
 import numpy as nm
+from numpy import random
 
 arr = nm.array([1, 2, 3, 4, 5])
 
@@ -50,7 +51,34 @@ y = nm.where(arr10 %2 ==1)
 
 arr11 = nm.array([3, 2, 0, 1])
 
-print(nm.sort(arr11))
+# print(nm.sort(arr11))
+
+
+
+arr12 = nm.array([41, 42, 43, 44])
+
+# Create an empty list
+filter_arr = []
+
+# go through each element in arr
+for element in arr12:
+  # if the element is higher than 42, set the value to True, otherwise False:
+  if element > 42:
+    filter_arr.append(True)
+  else:
+    filter_arr.append(False)
+
+newarr5 = arr12[filter_arr]
+
+# print(filter_arr)
+# print(newarr5)
+
+
+x2 = random.randint(100)
+
+print(x2)
+
+
 
 
 
