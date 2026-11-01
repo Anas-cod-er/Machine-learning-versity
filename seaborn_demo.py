@@ -16,7 +16,14 @@ data = {
 
 # sns.displot(data, kind="kde")
 
-sns.displot(random.uniform(size=1000), kind="kde")
+# sns.displot(random.uniform(size=1000), kind="kde")
+# x = random.multinomial(n=6, pvals=[1/6, 1/6, 1/6, 1/6, 1/6, 1/6])
+# sns.displot(random.exponential(size=1000), kind="kde")
+
+# sns.displot(random.chisquare(df=1, size=1000), kind="kde")
+
+
+sns.displot(random.pareto(a=2, size=1000))
 
 
 plt.show()
