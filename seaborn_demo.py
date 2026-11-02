@@ -47,5 +47,14 @@ def myadd(x, y):
 
 myadd = np.frompyfunc(myadd, 2, 1)
 
-print(myadd([1, 2, 3, 4], [5, 6, 7, 8]))
+# print(myadd([1, 2, 3, 4], [5, 6, 7, 8]))
+
+
+ar1 = np.array([10, 11, 12, 13, 14, 15])
+ar2 = np.array([20, 21, 22, 23, 24, 25])
+
+newar = np.add(ar1, ar2)
+newar2 = np.subtract(ar1, ar2)
+
+print(newar2)
 
