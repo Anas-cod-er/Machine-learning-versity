@@ -23,9 +23,29 @@ data = {
 # sns.displot(random.chisquare(df=1, size=1000), kind="kde")
 
 
-sns.displot(random.pareto(a=2, size=1000))
+# sns.displot(random.pareto(a=2, size=1000))
 
 
-plt.show()
+x = random.zipf(a=2, size=1000)
+sns.displot(x[x<10])
 
-# print(x)
+
+# plt.show()
+
+
+x = [1, 2, 3, 4]
+y = [4, 5, 6, 7]
+z = np.add(x, y)
+
+
+# print(z)
+
+
+def myadd(x, y):
+  return x+y
+
+
+myadd = np.frompyfunc(myadd, 2, 1)
+
+print(myadd([1, 2, 3, 4], [5, 6, 7, 8]))
+
