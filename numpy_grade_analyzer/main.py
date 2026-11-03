@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
+from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 from numpy.typing import NDArray
 
@@ -15,6 +17,40 @@ class GradeReport:
     subject_averages: NDArray[np.float64]
     top_student: str
     passing_students: NDArray[np.str_]
+
+
+def plot_report(
+    student_names: NDArray[np.str_],
+    subject_names: NDArray[np.str_],
+    report: GradeReport,
+    pass_mark: float,
+    output_path: Path,
+    show: bool = True,
+) -> None:
+    """Save charts of student and subject averages, optionally displaying them."""
+    figure, (student_axis, subject_axis) = plt.subplots(1, 2, figsize=(11, 5))
+
+    student_axis.bar(student_names, report.student_averages, color="steelblue")
+    student_axis.axhline(
+        pass_mark, color="tomato", linestyle="--", label=f"Pass mark ({pass_mark:g})"
+    )
+    student_axis.set_title("Average by student")
+    student_axis.set_ylabel("Average score")
+    student_axis.set_ylim(0, 100)
+    student_axis.tick_params(axis="x", rotation=25)
+    student_axis.legend()
+
+    subject_axis.bar(subject_names, report.subject_averages, color="mediumseagreen")
+    subject_axis.set_title("Average by subject")
+    subject_axis.set_ylabel("Average score")
+    subject_axis.set_ylim(0, 100)
+
+    figure.suptitle("Grade Analysis")
+    figure.tight_layout()
+    figure.savefig(output_path, dpi=150)
+    if show:
+        plt.show()
+    plt.close(figure)
 
 
 def analyze_grades(
@@ -55,6 +91,12 @@ def main() -> None:
         default=60.0,
         help="Minimum student average required to pass (default: 60).",
     )
+    parser.add_argument(
+        "--plot-path",
+        type=Path,
+        default=Path("grade_report.png"),
+        help="File path for the saved graph (default: grade_report.png).",
+    )
     args = parser.parse_args()
 
     students = np.array(["Amina", "Bilal", "Chloe", "David"])
@@ -83,6 +125,8 @@ def main() -> None:
         f"Passing students ({report.passing_students.size}): "
         f"{', '.join(report.passing_students.tolist()) or 'None'}"
     )
+    plot_report(students, subjects, report, args.pass_mark, args.plot_path)
+    print(f"\nGraph saved to: {args.plot_path}")
 
 
 if __name__ == "__main__":

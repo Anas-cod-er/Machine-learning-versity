@@ -1,8 +1,10 @@
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
 
 import numpy as np
 
-from main import analyze_grades
+from main import analyze_grades, plot_report
 
 
 class AnalyzeGradesTests(unittest.TestCase):
@@ -37,6 +39,16 @@ class AnalyzeGradesTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "between 0 and 100"):
             analyze_grades(self.students, self.subjects, grades)
+
+    def test_saves_average_graph(self) -> None:
+        report = analyze_grades(self.students, self.subjects, self.grades)
+
+        with TemporaryDirectory() as directory:
+            output_path = Path(directory) / "grade_report.png"
+            plot_report(self.students, self.subjects, report, 60, output_path, show=False)
+
+            self.assertTrue(output_path.is_file())
+            self.assertGreater(output_path.stat().st_size, 0)
 
 
 if __name__ == "__main__":
