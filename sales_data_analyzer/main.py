@@ -111,12 +111,12 @@ def analyze_sales(
 def plot_report(report: SalesReport, output_path: Path, show: bool = True) -> None:
     """Save product and regional revenue charts, optionally displaying them."""
     figure, (product_axis, region_axis) = plt.subplots(1, 2, figsize=(11, 5))
-    product_axis.bar(report.products, report.revenue_by_product, color="steelblue")
+    product_axis.bar(report.products, report.revenue_by_product, color="green")
     product_axis.set_title("Revenue by product")
     product_axis.set_ylabel("Revenue")
     product_axis.tick_params(axis="x", rotation=25)
 
-    region_axis.bar(report.regions, report.revenue_by_region, color="mediumseagreen")
+    region_axis.bar(report.regions, report.revenue_by_region, color="green")
     region_axis.set_title("Revenue by region")
     region_axis.set_ylabel("Revenue")
     region_axis.tick_params(axis="x", rotation=25)
